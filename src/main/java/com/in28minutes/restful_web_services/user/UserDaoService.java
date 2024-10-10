@@ -6,18 +6,21 @@ import javax.swing.plaf.OptionPaneUI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Component
 public class UserDaoService {
     private static List<User> users = new ArrayList<>();
 
+    private static Integer userCount = 0;
+
     static {
-        users.add(new User(1, "Adam", LocalDate.of(1998, 1, 1)));
-        users.add(new User(2, "Eve", LocalDate.of(1999, 1, 1)));
-        users.add(new User(3, "Jack", LocalDate.of(2000, 1, 1)));
-        users.add(new User(4, "Jill", LocalDate.of(2001, 1, 1)));
-        users.add(new User(5, "John", LocalDate.of(2002, 1, 1)));
+        users.add(new User(userCount++, "Adam", LocalDate.of(1998, 1, 1)));
+        users.add(new User(userCount++, "Eve", LocalDate.of(1999, 1, 1)));
+        users.add(new User(userCount++, "Jack", LocalDate.of(2000, 1, 1)));
+        users.add(new User(userCount++, "Jill", LocalDate.of(2001, 1, 1)));
+        users.add(new User(userCount++, "John", LocalDate.of(2002, 1, 1)));
     }
 
     public List<User> findAll() {
@@ -25,15 +28,15 @@ public class UserDaoService {
     }
 
     public User save(User user){
+        user.setId(++userCount);
         users.add(user);
         return user;
     }
 
-    public User findOne(int id) {
-        Optional<User> userOp = users.stream()
+    public User findById(long id) {
+        return users.stream()
             .filter(user -> user.getId() == id)
-            .findFirst();
-
-        return userOp.orElseGet(() -> new User(0, null, null));
+            .findFirst()
+            .orElseThrow(() -> new NoSuchElementException("User with id " + id + " not found"));
     }
 }
