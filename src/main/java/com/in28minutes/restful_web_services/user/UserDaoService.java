@@ -39,6 +39,10 @@ public class UserDaoService {
     }
 
     public void deleteById(long id) {
-        users.removeIf(user -> user.getId() == id);
+        boolean removed = users.removeIf(user -> user.getId() == id);
+
+        if (!removed) {
+            throw new UserNotFoundException("User with id " + id + " not found");
+        }
     }
 }

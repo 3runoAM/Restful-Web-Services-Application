@@ -1,6 +1,7 @@
 package com.in28minutes.restful_web_services.user;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -13,6 +14,7 @@ public class User {
     @Size(min = 2, message = "Name should have at least 2 characters")
     private String name;
     @Past(message = "Birth date should be in the past")
+    @NotNull(message = "Birth date is mandatory")
     private LocalDate birthDate;
 
     public User() {}
