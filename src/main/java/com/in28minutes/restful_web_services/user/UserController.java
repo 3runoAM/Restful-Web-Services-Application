@@ -1,5 +1,6 @@
 package com.in28minutes.restful_web_services.user;
 
+import com.in28minutes.restful_web_services.user.exceptions.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,13 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User findUserById(@PathVariable long id) {
-        return userDaoService.findById(id);
+        User user = userDaoService.findById(id);
+
+        if(user == null){
+            throw new UserNotFoundException("id-" + id);
+        } else {
+            return user;
+        }
     }
 
     @PostMapping("/users")

@@ -1,13 +1,11 @@
 package com.in28minutes.restful_web_services.user;
 
+import com.in28minutes.restful_web_services.user.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.swing.plaf.OptionPaneUI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Component
 public class UserDaoService {
@@ -37,6 +35,6 @@ public class UserDaoService {
         return users.stream()
             .filter(user -> user.getId() == id)
             .findFirst()
-            .orElseThrow(() -> new NoSuchElementException("User with id " + id + " not found"));
+            .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
     }
 }
