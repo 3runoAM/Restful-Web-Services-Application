@@ -37,4 +37,8 @@ public class UserDaoService {
             .findFirst()
             .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
     }
+
+    public void deleteById(long id) {
+        users.removeIf(user -> user.getId() == id);
+    }
 }
