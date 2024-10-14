@@ -1,5 +1,6 @@
-package com.in28minutes.restful_web_services.user.exceptions;
+package com.in28minutes.restful_web_services.exceptions;
 
+import com.in28minutes.restful_web_services.user.UserNotFoundException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

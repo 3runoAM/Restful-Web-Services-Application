@@ -1,6 +1,5 @@
 package com.in28minutes.restful_web_services.user;
 
-import com.in28minutes.restful_web_services.user.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
