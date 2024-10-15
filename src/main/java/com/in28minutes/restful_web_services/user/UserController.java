@@ -34,7 +34,7 @@ public class UserController {
         EntityModel<User> entityUser = EntityModel.of(user);
 
         WebMvcLinkBuilder linkToUsers = linkTo(methodOn(this.getClass()).retrieveAllUsers());
-        entityUser.add(linkToUsers.withRel("all-users"));
+        entityUser.add(linkToUsers.withRel("retrieve-all-users"));
 
         return ResponseEntity.ok(entityUser);
     }

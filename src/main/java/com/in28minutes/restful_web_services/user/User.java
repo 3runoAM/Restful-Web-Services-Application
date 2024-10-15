@@ -1,5 +1,6 @@
 package com.in28minutes.restful_web_services.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
@@ -8,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class User {
+    @JsonIgnore
     private long id;
 
     @NotBlank(message = "Name cannot be blank")
