@@ -1,6 +1,11 @@
 spring:
   application:
     name: restful_web_services
+  datasource:
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
 
 logging:
   level:
